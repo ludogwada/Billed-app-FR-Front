@@ -101,7 +101,7 @@ describe('Given I am connected as an employee', () => {
             ],
           },
         });
-        expect(inputFile.files[0].name).toBe('image.txt');
+        expect(inputFile.files[0].name).not.toBe('image.jpg');
       });
     });
   });
