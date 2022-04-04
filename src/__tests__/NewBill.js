@@ -61,22 +61,22 @@ describe('Given I am connected as an employee', () => {
         const newBill = new NewBill({
           document,
           onNavigate,
-          store: null,
+          store,
           localStorage: window.localStorage,
         });
-        const handleChangeFile = jest.fn((e) => newBill.handleChangeFile(e));
+        const blob = new Blob(['image'], { type: 'image/jpeg' });
+        const file = new File([blob], 'file.jpeg', { type: 'image/jpeg' });
         const inputFile = screen.getByTestId('file');
+        const handleChangeFile = jest.fn((e) => newBill.handleChangeFile(e));
 
         inputFile.addEventListener('change', handleChangeFile);
         fireEvent.change(inputFile, {
           target: {
-            files: [
-              new File(['image.jpg'], 'image.jpg', { type: 'image/jpg' }),
-            ],
+            files: [file],
           },
         });
 
-        expect(inputFile.files[0].name).toBe('image.jpg');
+        expect(inputFile.files[0].name).toBe('file.jpeg');
         expect(handleChangeFile).toBeCalled();
       });
 
