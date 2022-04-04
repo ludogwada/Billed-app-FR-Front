@@ -134,7 +134,7 @@ describe('Given I am connected as an employee', () => {
       mockStore.bills.mockImplementationOnce(() => {
         return {
           list: () => {
-            return Promise.reject(new Error('Erreur 404'));
+            return Promise.reject(new Error('Erreur 500'));
           },
         };
       });
